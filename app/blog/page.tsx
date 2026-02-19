@@ -15,7 +15,7 @@ export default function BlogPage() {
       <h1 className="text-3xl font-semibold tracking-tight mb-12">Blog</h1>
 
       {posts.length === 0 ? (
-        <p className="text-zinc-400 text-sm">No posts yet.</p>
+        <p className="text-zinc-400 dark:text-zinc-500 text-sm">No posts yet.</p>
       ) : (
         <div className="space-y-8">
           {posts.map((post) => (
@@ -27,11 +27,11 @@ export default function BlogPage() {
                 >
                   {post.title}
                 </Link>
-                <time className="text-xs text-zinc-400 font-mono shrink-0">
+                <time className="text-xs text-zinc-400 dark:text-zinc-500 font-mono shrink-0">
                   {formatDate(post.date)}
                 </time>
               </div>
-              <p className="text-sm text-zinc-500 mt-1">{post.description}</p>
+              <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">{post.description}</p>
             </article>
           ))}
         </div>

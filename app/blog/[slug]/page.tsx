@@ -33,17 +33,17 @@ export default function PostPage({ params }: Props) {
     <div className="py-12">
       <Link
         href="/blog"
-        className="text-sm text-zinc-400 hover:text-zinc-900 transition-colors mb-10 block"
+        className="text-sm text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors mb-10 block"
       >
         ← Blog
       </Link>
 
       <header className="mb-10">
         <h1 className="text-2xl font-semibold tracking-tight mb-2">{post.title}</h1>
-        <time className="text-sm text-zinc-400 font-mono">{formatDate(post.date, "long")}</time>
+        <time className="text-sm text-zinc-400 dark:text-zinc-500 font-mono">{formatDate(post.date, "long")}</time>
       </header>
 
-      <article className="prose prose-zinc max-w-none prose-a:underline-offset-4 prose-code:before:content-none prose-code:after:content-none">
+      <article className="prose prose-zinc dark:prose-invert max-w-none prose-a:underline-offset-4 prose-code:before:content-none prose-code:after:content-none">
         <MDXRemote source={post.content} />
       </article>
     </div>
