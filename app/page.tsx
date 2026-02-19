@@ -1,101 +1,112 @@
-import Image from "next/image";
+import Link from "next/link";
+import { getAllPosts, formatDate } from "@/lib/blog";
+
+const projects = [
+  {
+    name: "Personal website",
+    description:
+      "This site. Built with Next.js, Tailwind, and MDX — using Claude Code as a way to get back into coding.",
+    url: "https://github.com/jpneg",
+    tags: ["Next.js", "TypeScript", "MDX"],
+  },
+];
+
+const contact = [
+  { label: "GitHub", url: "https://github.com/jpneg" },
+  { label: "LinkedIn", url: "https://linkedin.com/in/jpnegrete" },
+];
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const recentPosts = getAllPosts().slice(0, 3);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <div className="py-12 space-y-20">
+      {/* Hero */}
+      <section>
+        <h1 className="text-3xl font-semibold tracking-tight mb-4">Juan Pablo</h1>
+        <p className="text-zinc-600 text-base leading-relaxed max-w-xl">
+          Computer Engineer. Mostly interested in cybersecurity and AI stuff. Currently working
+          as a Cybersecurity Manager. As a side project I&apos;m regaining some coding skills
+          using Claude Code!
+        </p>
+        <div className="flex flex-wrap gap-x-5 gap-y-2 mt-6">
+          {contact.map((link) => (
+            <a
+              key={link.label}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-zinc-400 hover:text-zinc-900 transition-colors"
+            >
+              {link.label}
+            </a>
+          ))}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* Projects */}
+      <section id="projects">
+        <h2 className="text-xs font-mono text-zinc-400 uppercase tracking-widest mb-8">
+          Projects
+        </h2>
+        <div className="space-y-8">
+          {projects.map((project) => (
+            <div key={project.name}>
+              <div className="flex items-baseline gap-3 mb-1">
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium hover:underline underline-offset-4"
+                >
+                  {project.name}
+                </a>
+                <div className="flex gap-2">
+                  {project.tags.map((tag) => (
+                    <span key={tag} className="text-xs text-zinc-400 font-mono">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <p className="text-sm text-zinc-500">{project.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Recent posts */}
+      {recentPosts.length > 0 && (
+        <section>
+          <h2 className="text-xs font-mono text-zinc-400 uppercase tracking-widest mb-8">
+            Recent posts
+          </h2>
+          <div className="space-y-6">
+            {recentPosts.map((post) => (
+              <div key={post.slug}>
+                <div className="flex items-baseline justify-between gap-4">
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="font-medium hover:underline underline-offset-4"
+                  >
+                    {post.title}
+                  </Link>
+                  <time className="text-xs text-zinc-400 font-mono shrink-0">
+                    {formatDate(post.date)}
+                  </time>
+                </div>
+                <p className="text-sm text-zinc-500 mt-1">{post.description}</p>
+              </div>
+            ))}
+          </div>
+          <Link
+            href="/blog"
+            className="inline-block mt-8 text-sm text-zinc-400 hover:text-zinc-900 transition-colors"
+          >
+            All posts →
+          </Link>
+        </section>
+      )}
     </div>
   );
 }
