@@ -26,8 +26,7 @@ export default function Home() {
         <h1 className="text-3xl font-semibold tracking-tight mb-4">Juan Pablo</h1>
         <p className="text-zinc-600 dark:text-zinc-400 text-base leading-relaxed max-w-xl">
           Computer Engineer. Mostly interested in cybersecurity and AI stuff. Currently working
-          as a Cybersecurity Manager. As a side project I&apos;m regaining some coding skills
-          using Claude Code!
+          as a Cybersecurity Manager. As a side project I&apos;m learning to use Claude Code!
         </p>
         <div className="flex flex-wrap gap-x-5 gap-y-2 mt-6">
           {contact.map((link) => (
